@@ -39,7 +39,14 @@ chao_super = pygame.image.load('assets/fundos/ground.png')
 ceu_super = pygame.image.load('assets/fundos/Sky.png')
 
 # Importa Gamba
-gamba_supe = pygame.image.load('assets/gamba/tile000.png')
+gamba_lista_imagens = []
+for imagem_gamba in range(0,6):
+    gamba_superficie = pygame.image.load(f'assets/gamba/tile00{imagem_gamba}.png')
+    gamba_lista_imagens.append(gamba_superficie)
+
+index_gamba = 0
+
+gamba_supe = gamba_lista_imagens[index_gamba]
 gamba_rect = gamba_supe.get_rect(center = (730, 150))
 lista_gambas = []
 
@@ -114,6 +121,13 @@ while True:
             # Executa um código para cada gamba na lista
             for posicao, gamba in enumerate(lista_gambas):
                 gamba.x -= 5
+
+                index_gamba += 0.35
+                gamba_supe = gamba_lista_imagens[int(index_gamba)]
+
+                if index_gamba > 5:
+                    index_gamba = 0
+                    
                 tela.blit(gamba_supe, gamba)
 
                 if gamba.x < -100:
